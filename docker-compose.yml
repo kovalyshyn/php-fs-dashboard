@@ -1,12 +1,19 @@
+---
+dashboard:  
+  image: vkovalyshyn/php-fs-dashboard
+  privileged: true
+
 db:
   image: postgres:9.4
   environment:
    - POSTGRES_USER=switch
    - POSTGRES_PASSWORD=switch
-
-dashboard:  
-  image: vkovalyshyn/php-fs-dashboard
-  privileged: true
+  volumes:
+   - empty_dump_restore.sh:/empty_dump_restore.sh
+  volumes_from:
+   - dashboard
+  ports:
+   - "5432:5432"
 
 php:  
   image: dylanlindgren/docker-laravel-phpfpm
