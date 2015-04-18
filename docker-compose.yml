@@ -1,0 +1,27 @@
+db:
+  image: postgres:9.4
+  environment:
+   - POSTGRES_USER=switch
+   - POSTGRES_PASSWORD=switch
+
+dashboard:  
+  image: kovalyshyn/php-fs-dashboard
+  privileged: true
+
+php:  
+  image: dylanlindgren/docker-laravel-phpfpm
+  volumes_from:
+    - dashboard
+  links:
+    - db:PGSQL_HOST
+  privileged: true
+
+web:  
+  image: dylanlindgren/docker-laravel-nginx
+  volumes_from:
+    - dashboard
+  links:
+    - php:fpm
+  ports:
+    - "80:80"
+  privileged: true
