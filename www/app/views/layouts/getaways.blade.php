@@ -39,7 +39,7 @@
       <th>delay</th>
       <th>balance</th>
       <th>last used at</th>
-      <th>{{ HTML::link('https://wiki.freeswitch.org/wiki/Hangup_Causes', 'last hangup cause') }}</th>
+      <th>{{ HTML::link('https://docs.webitel.com/display/SDK/Hangup+Cause+Code+Table', 'last hangup cause') }}</th>
       <th><abbr title="Today AVG connected seconds">ACD</abbr></th>
     </tr>
   </thead>

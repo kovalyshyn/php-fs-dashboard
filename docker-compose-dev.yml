@@ -2,6 +2,8 @@
 dashboard:  
   image: vkovalyshyn/php-fs-dashboard
   privileged: true
+  volumes:
+    - www:/data/www:rw
 
 db:
   image: postgres:9.4
@@ -9,9 +11,11 @@ db:
    - POSTGRES_USER=switch
    - POSTGRES_PASSWORD=switch
   volumes:
-   - db:/var/lib/postgresql/data
+   - empty_dump_restore.sh:/empty_dump_restore.sh
   volumes_from:
    - dashboard
+  ports:
+   - "5432:5432"
 
 php:  
   image: dylanlindgren/docker-laravel-phpfpm
@@ -30,14 +34,3 @@ web:
   ports:
     - "80:80"
   privileged: true
-
-switch:
-  image: webitel/freeswitch-base:vanilla
-  privileged: true
-  net: "host"
-  volumes:
-    - fs/logs:/logs
-    - fs/conf:/etc/freeswitch
-    - fs/scripts:/scripts
-  volumes_from:
-    -  dashboard

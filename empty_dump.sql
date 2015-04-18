@@ -531,6 +531,26 @@ ALTER SEQUENCE news_id_seq OWNED BY news.id;
 
 
 --
+-- Name: registrations; Type: TABLE; Schema: public; Owner: postgres; Tablespace:
+--
+
+CREATE TABLE registrations (
+    reg_user character varying(256),
+    realm character varying(256),
+    token character varying(256),
+    url text,
+    expires integer,
+    network_ip character varying(256),
+    network_port character varying(256),
+    network_proto character varying(256),
+    hostname character varying(256),
+    metadata character varying(256)
+);
+
+
+ALTER TABLE registrations OWNER TO postgres;
+
+--
 -- Name: sip_profiles; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
