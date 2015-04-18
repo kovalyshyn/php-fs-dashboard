@@ -3,7 +3,9 @@ dashboard:
   image: vkovalyshyn/php-fs-dashboard
   privileged: true
   volumes:
-    - www:/data/www:rw
+    - www/app/controllers:/data/www/app/controllers:rw
+    - www/app/models:/data/www/app/models:rw
+    - www/app/views:/data/www/app/views:rw
 
 db:
   image: postgres:9.4

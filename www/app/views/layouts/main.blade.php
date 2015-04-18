@@ -58,7 +58,7 @@
     <div class="navbar-inner">
         <div class="container">
             <ul class="nav">  
-                <li>{{ HTML::link('/', 'switch manager v.1.3 (150420)') }}</li>
+                <li>{{ HTML::link('/', 'switch manager v.1.3 (150418)') }}</li>
             @if(Auth::check())
                 <li>{{ HTML::link('logout', 'Logout ('.Auth::user()->name.')') }}</li>
             @endif
