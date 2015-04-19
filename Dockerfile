@@ -9,3 +9,4 @@ RUN chmod -R 777 /data/www/app/storage
 
 VOLUME ["/data"]
 ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["laravel"]

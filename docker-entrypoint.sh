@@ -19,4 +19,8 @@ if [ "$PGSQL_PASS" ]; then
 	sed -i 's/PGSQL_PASS/'$PGSQL_PASS'/g' /data/www/public/directory.xml.php
 fi
 
-tail -f /data/www/app/storage/logs/laravel.log
+if [ "$1" = 'laravel' ]; then
+    exec tail -f /data/www/app/storage/logs/laravel.log
+fi
+
+exec "$@"
