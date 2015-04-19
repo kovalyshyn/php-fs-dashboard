@@ -5,7 +5,7 @@ $vars = '';
 $GLOBALS['caller_id_num'] = isset($_POST['Caller-Caller-ID-Number']) ? $_POST['Caller-Caller-ID-Number'] : '';
 $GLOBALS['destination'] = isset($_POST['Caller-Destination-Number']) ? $_POST['Caller-Destination-Number'] : '';
 $GLOBALS['uuid'] = isset($_POST['Unique-ID']) ? substr($_POST['Unique-ID'], 0, 8) : 'uuid';
-$GLOBALS['pgsql'] = "host=PGSQL_HOST dbname=switch user=switch password=switch connect_timeout=10";
+$GLOBALS['pgsql'] = "host=PGSQL_HOST dbname=switch user=PGSQL_USER password=PGSQL_PASS connect_timeout=10";
 
 ////////////////////////////////////////////////////
 //
@@ -54,7 +54,7 @@ function ContextPublic($xmlw)
 		//<action>
 		$xmlw -> startElement('action');
         $xmlw -> writeAttribute('application', 'set');
-        $xmlw -> writeAttribute('data', 'continue_on_fail=503');
+        $xmlw -> writeAttribute('data', 'continue_on_fail=GATEWAY_DOWN,NORMAL_TEMPORARY_FAILURE,NO_ROUTE_DESTINATION,CALL_REJECTED,SERVICE_UNAVAILABLE,MANAGER_REQUEST');
         $xmlw -> endElement();	
 		//<action>
         $xmlw -> startElement('action');

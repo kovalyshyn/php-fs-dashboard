@@ -7,13 +7,18 @@
 {{ Form::open(array('url'=>'blacklist/update', 'class'=>'form-signin')) }}
 <hr />
 {{ Form::label('progress_before_answer', '- Progressing media before Answer are less than ') }}
-{{ Form::text('progress_before_answer', $dest->progress_before_answer) }} seconds.
-{{ Form::label('progress_without_answer', '- Progressing media without Answer are less than ') }}
-{{ Form::text('progress_without_answer', $dest->progress_without_answer) }} seconds.
-<label class="checkbox">{{ Form::checkbox('progress_no_answer', '1', $dest->progress_no_answer ) }} Progressing media without Answer</label>
-<hr />
-- Repeat {{ Form::text('repeat_calls', $dest->repeat_calls) }} calls<br />
+{{ Form::text('progress_before_answer', $dest->progress_before_answer) }} seconds. <br />
+Repeat {{ Form::text('repeat_calls', $dest->repeat_calls) }} calls<br />
 for last {{ Form::text('repeat_calls_minutes', $dest->repeat_calls_minutes) }} minutes.
+<hr />
+{{ Form::label('progress_without_answer', '- Progressing media without Answer are less than ') }}
+{{ Form::text('progress_without_answer', $dest->progress_without_answer) }} seconds. <br />
+Repeat {{ Form::text('repeat_calls_without_answer', $dest->repeat_calls_without_answer) }} calls<br />
+for last {{ Form::text('repeat_calls_minutes_without_answer', $dest->repeat_calls_minutes_without_answer) }} minutes.
+<hr />
+<label class="checkbox">{{ Form::checkbox('progress_no_answer', '1', $dest->progress_no_answer ) }} Progressing media without Answer</label>
+Repeat {{ Form::text('repeat_calls_no_answer', $dest->repeat_calls_no_answer) }} calls<br />
+for last {{ Form::text('repeat_calls_minutes_no_answer', $dest->repeat_calls_minutes_no_answer) }} minutes.
 <hr />
 <label class="checkbox">{{ Form::checkbox('numA', '1', $dest->numA ) }} A Number to blacklist</label>
 <label class="checkbox">{{ Form::checkbox('numB', '1', $dest->numB ) }} B Number to blacklist</label>

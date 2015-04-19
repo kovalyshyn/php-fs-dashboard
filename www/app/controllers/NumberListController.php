@@ -49,6 +49,10 @@ class NumberListController extends BaseController
             $dest->progress_without_answer = (!Input::get('progress_without_answer') ? '0' : Input::get('progress_without_answer'));
             $dest->repeat_calls = (!Input::get('repeat_calls') ? '0' : Input::get('repeat_calls'));
             $dest->repeat_calls_minutes = (!Input::get('repeat_calls_minutes') ? '0' : Input::get('repeat_calls_minutes'));
+            $dest->repeat_calls_without_answer = (!Input::get('repeat_calls_without_answer') ? '0' : Input::get('repeat_calls_without_answer'));
+            $dest->repeat_calls_minutes_without_answer = (!Input::get('repeat_calls_minutes_without_answer') ? '0' : Input::get('repeat_calls_minutes_without_answer'));
+            $dest->repeat_calls_no_answer = (!Input::get('repeat_calls_no_answer') ? '0' : Input::get('repeat_calls_no_answer'));
+            $dest->repeat_calls_minutes_no_answer = (!Input::get('repeat_calls_minutes_no_answer') ? '0' : Input::get('repeat_calls_minutes_no_answer'));
             $dest->progress_no_answer = (!Input::get('progress_no_answer') ?  false : true);
             $dest->numA = (!Input::get('numA') ?  false : true);
             $dest->numB = (!Input::get('numB') ?  false : true);

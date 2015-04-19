@@ -2,9 +2,10 @@ FROM busybox
 MAINTAINER "Vitaly Kovalyshyn" <vitaly@kovalyshyn.pp.ua>
 
 RUN mkdir -p /data/logs
-COPY empty_dump.sql /data/
+COPY sql /data/sql
 COPY www /data/www
+COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod -R 777 /data/www/app/storage 
 
 VOLUME ["/data"]
-ENTRYPOINT ["tail", "-f", "/data/www/app/storage/logs/laravel.log"]
+ENTRYPOINT ["/docker-entrypoint.sh"]

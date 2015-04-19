@@ -1,6 +1,9 @@
 ---
 dashboard:  
   image: vkovalyshyn/php-fs-dashboard
+  environment:
+   - PGSQL_USER=switch
+   - PGSQL_PASS=switch
   privileged: true
   volumes:
     - www/app/controllers:/data/www/app/controllers:rw

@@ -2,7 +2,7 @@
 //file_put_contents('post.txt', print_r($_POST, true));
 $vars = '';
 
-$GLOBALS['pgsql'] = "host=PGSQL_HOST dbname=switch user=switch password=switch connect_timeout=10";
+$GLOBALS['pgsql'] = "host=PGSQL_HOST dbname=switch user=PGSQL_USER password=PGSQL_PASS connect_timeout=10";
 
 header('Content-Type: text/xml');
 
