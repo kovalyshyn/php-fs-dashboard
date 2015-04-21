@@ -16,7 +16,7 @@ db:
    - POSTGRES_USER=switch
    - POSTGRES_PASSWORD=switch
   volumes:
-   - empty_dump_restore.sh:/empty_dump_restore.sh
+   - sql_restore.sh:/sql_restore.sh
   volumes_from:
    - dashboard
   ports:

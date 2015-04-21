@@ -6,19 +6,17 @@
 
 {{ Form::open(array('url'=>'blacklist/update', 'class'=>'form-signin')) }}
 <hr />
-{{ Form::label('progress_before_answer', '- Progressing media before Answer are less than ') }}
-{{ Form::text('progress_before_answer', $dest->progress_before_answer) }} seconds. <br />
-Repeat {{ Form::text('repeat_calls', $dest->repeat_calls) }} calls<br />
-for last {{ Form::text('repeat_calls_minutes', $dest->repeat_calls_minutes) }} minutes.
+Media <b>before Answer</b> are less then {{ Form::text('progress_before_answer', $dest->progress_before_answer, array('class'=>'input-mini')) }} seconds.<br /> 
+Repeat {{ Form::text('repeat_calls', $dest->repeat_calls, array('class'=>'input-mini')) }} calls 
+for last {{ Form::text('repeat_calls_minutes', $dest->repeat_calls_minutes, array('class'=>'input-mini')) }} minutes.
 <hr />
-{{ Form::label('progress_without_answer', '- Progressing media without Answer are less than ') }}
-{{ Form::text('progress_without_answer', $dest->progress_without_answer) }} seconds. <br />
-Repeat {{ Form::text('repeat_calls_without_answer', $dest->repeat_calls_without_answer) }} calls<br />
-for last {{ Form::text('repeat_calls_minutes_without_answer', $dest->repeat_calls_minutes_without_answer) }} minutes.
+Media <b>without Answer</b> are less then  {{ Form::text('progress_without_answer', $dest->progress_without_answer, array('class'=>'input-mini')) }} seconds. <br />
+Repeat {{ Form::text('repeat_calls_without_answer', $dest->repeat_calls_without_answer, array('class'=>'input-mini')) }} calls 
+for last {{ Form::text('repeat_calls_minutes_without_answer', $dest->repeat_calls_minutes_without_answer, array('class'=>'input-mini')) }} minutes.
 <hr />
-<label class="checkbox">{{ Form::checkbox('progress_no_answer', '1', $dest->progress_no_answer ) }} Progressing media without Answer</label>
-Repeat {{ Form::text('repeat_calls_no_answer', $dest->repeat_calls_no_answer) }} calls<br />
-for last {{ Form::text('repeat_calls_minutes_no_answer', $dest->repeat_calls_minutes_no_answer) }} minutes.
+<label class="checkbox">{{ Form::checkbox('progress_no_answer', '1', $dest->progress_no_answer ) }} Progressing media <b>without Answer</b></label>
+Repeat {{ Form::text('repeat_calls_no_answer', $dest->repeat_calls_no_answer, array('class'=>'input-mini')) }} calls 
+for last {{ Form::text('repeat_calls_minutes_no_answer', $dest->repeat_calls_minutes_no_answer, array('class'=>'input-mini')) }} minutes.
 <hr />
 <label class="checkbox">{{ Form::checkbox('numA', '1', $dest->numA ) }} A Number to blacklist</label>
 <label class="checkbox">{{ Form::checkbox('numB', '1', $dest->numB ) }} B Number to blacklist</label>
@@ -29,7 +27,8 @@ Answer = SIP 200 OK</i></p>
 {{ Form::close() }}
 
 @if($blacklist->count() > 0)
-<a class="btn btn-danger" href="/blacklist/purge/{{ $dest->id }}"><i class="icon-trash icon-white"></i> Delete All</a>
+<a class="btn btn-danger" href="/blacklist/purge/{{ $dest->id }}"><i class="icon-trash icon-white"></i> Delete All</a> 
+<a class="btn btn-info" href="/blacklist/csv/{{ $dest->id }}"><i class="icon-download-alt icon-white"></i> Export All</a> 
     {{ Form::open(array('url'=>'blacklist/modify')) }}
     <table class="table table-hover table-condensed">
       <thead>
@@ -58,7 +57,7 @@ Answer = SIP 200 OK</i></p>
   <?php echo $blacklist->links(); ?>
 
   {{ Form::hidden('dest_id', $dest->id) }}
-  {{ Form::submit('Update', array('class'=>'btn btn-warning')) }}
+  {{ Form::submit('Delete selected', array('class'=>'btn btn-danger')) }}
   {{ Form::close() }}
 @endif
 

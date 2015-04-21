@@ -93,6 +93,28 @@ class NumberListController extends BaseController
         
     }
 
+
+    public function getCsv($id = null)
+    {
+        $table = NumberList::Where('destinations', '=', $id)->get();
+        //$table = NumberList::All(); //Where('destinations', '=', $id);
+        //$output = ''; 
+        $output = implode(",", Schema::getColumnListing('NumberList'));
+        $output .= "\n";
+        foreach ($table as $row) {
+            $output .=  implode(",",$row->toArray());
+            $output .= "\n";
+        }
+    $headers = array(
+        'Content-Type' => 'text/csv',
+        'Content-Disposition' => 'attachment; filename="ExportFileName.csv"',
+    );
+ 
+    return Response::make(rtrim($output, "\n"), 200, $headers);
+
+
+    }
+
 }
 
 ?>
