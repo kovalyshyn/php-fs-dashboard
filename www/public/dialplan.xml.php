@@ -147,9 +147,9 @@ function ContextPublic($xmlw)
 				$dest_num = $destinations['del_prefix']=='1' ? '$2' : '+$1'; 
 			}
 			if ($gw["type_id"] == '3' and $gw["port"] == '5060' ) {
-				$bridgeString = 'sofia/gateway/'.$gw["ip"].'/'.$gw["mask"].$dest_num;
+				//$bridgeString = 'sofia/gateway/'.$gw["ip"].'/'.$gw["mask"].$dest_num;
+				$bridgeString = 'sofia/'.$gw["sip_profile"].'/'.$gw["mask"].$dest_num.'@'.$gw["ip"];
 			} elseif ($gw["type_id"] == '1') {
-				//$bridgeString = 'sofia/'.$gw["sip_profile"].'/'.$gw["id"].'%213.136.73.19^'.$dest_num;
 				$bridgeString = 'sofia/'.$gw["sip_profile"].'/'.$gw["mask"].$dest_num.'@'.$gw["ip"].':'.$gw["port"];
 			} else {
 				$bridgeString = 'sofia/'.$gw["sip_profile"].'/'.$gw["mask"].$dest_num.'@'.$gw["ip"].':'.$gw["port"];
