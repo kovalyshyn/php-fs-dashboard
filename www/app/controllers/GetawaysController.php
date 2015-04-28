@@ -113,7 +113,7 @@ class GetawaysController extends BaseController
                                         $gw->bridge_string = Input::get('bridge_string');
                                 }
 				if (Input::get('call_timeout')) {
-                                        $gw->bridge_string = Input::get('call_timeout');
+                                        $gw->call_timeout = Input::get('call_timeout');
                                 }
 				$gw->concurrent = (!Input::get('concurrent') ? '1' : Input::get('concurrent'));
 				$gw->active = (!Input::get('active') ? '0' : '1');
