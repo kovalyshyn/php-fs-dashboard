@@ -52,22 +52,22 @@ function ContextPublic($xmlw)
 		$xmlw -> writeAttribute('field', 'destination_number');
 		$xmlw -> writeAttribute('expression', '^'.$destinations["agent_prefix"].'('.$destinations["global_prefix"].'(\d{'.$destinations["number_length"].'}))$');
 		//<action>
-		$xmlw -> startElement('action');
-        $xmlw -> writeAttribute('application', 'set');
-        $xmlw -> writeAttribute('data', 'continue_on_fail=GATEWAY_DOWN,NORMAL_TEMPORARY_FAILURE,NO_ROUTE_DESTINATION,CALL_REJECTED,SERVICE_UNAVAILABLE,MANAGER_REQUEST');
-        $xmlw -> endElement();	
+        	$xmlw -> startElement('action');
+                $xmlw -> writeAttribute('application', 'set');
+                $xmlw -> writeAttribute('data', 'continue_on_fail=true');
+                $xmlw -> endElement();	
 		//<action>
-        $xmlw -> startElement('action');
-        $xmlw -> writeAttribute('application', 'set');
-        $xmlw -> writeAttribute('data', 'hangup_after_bridge=true');
-        $xmlw -> endElement();
-        //<action>
+                $xmlw -> startElement('action');
+                $xmlw -> writeAttribute('application', 'set');
+                $xmlw -> writeAttribute('data', 'hangup_after_bridge=true');
+                $xmlw -> endElement();
+                //<action>
 		//<action>
-        $xmlw -> startElement('action');
-        $xmlw -> writeAttribute('application', 'set');
-        $xmlw -> writeAttribute('data', 'call_timeout=30');
-        $xmlw -> endElement();
-        //<action>
+                $xmlw -> startElement('action');
+                $xmlw -> writeAttribute('application', 'set');
+                $xmlw -> writeAttribute('data', 'call_timeout=30');
+                $xmlw -> endElement();
+                //<action>
 
 		$sql = 'SELECT
 			"id",
