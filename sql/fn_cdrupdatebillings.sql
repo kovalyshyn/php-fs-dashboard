@@ -41,7 +41,7 @@ IF NEW.destination_id IS NOT NULL THEN
         
 -- Process Without Answer
     IF blacklist IS TRUE AND EXISTS (SELECT "id" FROM "Destinations" AS "D" WHERE id = NEW.destination_id 
-        AND ("progress_without_answer" > 0 AND NEW.billsec = 0 AND "progress_without_answer" > NEW.progress_mediasec) 
+        AND ("progress_without_answer" > 0 AND NEW.billsec = 0 AND "progress_without_answer" > NEW.progress_mediasec AND NEW.progress_mediasec > 0) 
         AND ( 
             ( (num_a IS TRUE)  AND ( (SELECT COUNT("uuid") FROM cdr AS "C" WHERE 
                 "C"."start_stamp"::TIMESTAMP > (now() - "D"."repeat_calls_minutes_without_answer" * INTERVAL '1 minute') AND "C"."caller_id_number" LIKE NEW.caller_id_number)  >= "D"."repeat_calls_without_answer" ) 
@@ -52,10 +52,10 @@ IF NEW.destination_id IS NOT NULL THEN
         )
     THEN
         IF num_a IS TRUE THEN
-           INSERT INTO "NumberList" ( "caller_id_number", "added", "destinations","whitelist", "description") VALUES ( NEW.caller_id_number, NOW(), NEW.destination_id, FALSE, 'ProgressMedia without answer: ' || NEW.progress_mediasec );
+           INSERT INTO "NumberList" ( "caller_id_number", "added", "destinations","whitelist", "description") VALUES ( NEW.caller_id_number, NOW(), NEW.destination_id, FALSE, 'ProgressMedia without answer with media: ' || NEW.progress_mediasec );
         END IF;
         IF num_b IS TRUE THEN
-           INSERT INTO "NumberList" ( "callee_id_number", "added", "destinations","whitelist", "description") VALUES ( NEW.destination_number, NOW(), NEW.destination_id, FALSE, 'ProgressMedia without answer: ' || NEW.progress_mediasec );
+           INSERT INTO "NumberList" ( "callee_id_number", "added", "destinations","whitelist", "description") VALUES ( NEW.destination_number, NOW(), NEW.destination_id, FALSE, 'ProgressMedia without answer with media: ' || NEW.progress_mediasec );
         END IF;
         blacklist := FALSE;
     END IF;
@@ -73,10 +73,10 @@ IF NEW.destination_id IS NOT NULL THEN
         )
     THEN
         IF num_a IS TRUE THEN
-           INSERT INTO "NumberList" ( "caller_id_number", "added", "destinations","whitelist", "description") VALUES ( NEW.caller_id_number, NOW(), NEW.destination_id, FALSE, 'ProgressMedia NO answer: ' || NEW.progress_mediasec );
+           INSERT INTO "NumberList" ( "caller_id_number", "added", "destinations","whitelist", "description") VALUES ( NEW.caller_id_number, NOW(), NEW.destination_id, FALSE, 'ProgressMedia without answer: ' || NEW.progress_mediasec );
         END IF;
         IF num_b IS TRUE THEN
-           INSERT INTO "NumberList" ( "callee_id_number", "added", "destinations","whitelist", "description") VALUES ( NEW.destination_number, NOW(), NEW.destination_id, FALSE, 'ProgressMedia NO answer: ' || NEW.progress_mediasec );
+           INSERT INTO "NumberList" ( "callee_id_number", "added", "destinations","whitelist", "description") VALUES ( NEW.destination_number, NOW(), NEW.destination_id, FALSE, 'ProgressMedia without answer: ' || NEW.progress_mediasec );
         END IF;
         blacklist := FALSE;
     END IF;
