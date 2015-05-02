@@ -95,6 +95,7 @@
       <th>caller_id_number</th>
       <th>destination_number</th>
       <th>duration</th>
+      <th>progress_mediasec</th>
       <th>billsec</th>
       <th>rate</th>
       <th>codec</th>
@@ -112,6 +113,7 @@
       <td>{{ $c->caller_id_number }}</td>
       <td>{{ $c->destination_number }}</td>
       <td>{{ $c->duration }}</td>
+      <td>{{ $c->progress_mediasec }}</td>
       <td>{{ $c->billsec }}</td>
       <td>
         @if (Auth::user()->type == '0')
