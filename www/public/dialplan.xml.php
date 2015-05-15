@@ -140,8 +140,8 @@ function ContextPublic($xmlw)
 			}
 			//<action>
 			$xmlw -> startElement('action');
-			//$xmlw -> writeAttribute('application', 'bridge');
-			$xmlw -> writeAttribute('application', 'limit_execute');
+			$xmlw -> writeAttribute('application', 'bridge');
+			//$xmlw -> writeAttribute('application', 'limit_execute');
 			if ($gw["bridge_string"]) {
 				$dest_num = $gw["bridge_string"];
 			} else {
