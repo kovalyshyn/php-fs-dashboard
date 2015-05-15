@@ -155,8 +155,8 @@ function ContextPublic($xmlw)
 			} else {
 				$bridgeString = 'sofia/'.$gw["sip_profile"].'/'.$gw["mask"].$dest_num.'@'.$gw["ip"].':'.$gw["port"];
 			}
-			$xmlw -> writeAttribute('data', 'db out '.$gw["id"].' '.$gw["concurrent"].' bridge '.$bridgeString);
-			//$xmlw -> writeAttribute('data', $bridgeString);
+			//$xmlw -> writeAttribute('data', 'db out '.$gw["id"].' '.$gw["concurrent"].' bridge '.$bridgeString);
+			$xmlw -> writeAttribute('data', $bridgeString);
 			$xmlw -> endElement();
 			//</action>
 		}
