@@ -152,7 +152,7 @@ function ContextPublic($xmlw)
 				$bridgeString = 'sofia/'.$gw["sip_profile"].'/'.$gw["mask"].$dest_num.'@'.$gw["ip"];
 			} elseif ($gw["type_id"] == '1') {
 				//$bridgeString = 'sofia/'.$gw["sip_profile"].'/'.$gw["mask"].$dest_num.'@'.$gw["ip"].':'.$gw["port"];
-				$bridgeString = '"${regex(${sofia_contact(*/${gw_id}@${dialed_domain})}|(^\w+/\w+)/|%1)}/sip:$1@${regex(${sofia_contact(*/${gw_id}@${dialed_domain})}|(\d+.\d+.\d+.\d+:\d+.*)|%1)}';
+				$bridgeString = '${regex(${sofia_contact(*/${gw_id}@${dialed_domain})}|(^\w+/\w+)/|%1)}/sip:$1@${regex(${sofia_contact(*/${gw_id}@${dialed_domain})}|(\d+.\d+.\d+.\d+:\d+.*)|%1)}';
 			} else {
 				$bridgeString = 'sofia/'.$gw["sip_profile"].'/'.$gw["mask"].$dest_num.'@'.$gw["ip"].':'.$gw["port"];
 			}
