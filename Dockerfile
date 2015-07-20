@@ -1,7 +1,7 @@
-FROM progrium/busybox
+FROM debian:jessie
 MAINTAINER "Vitaly Kovalyshyn" <vitaly@kovalyshyn.pp.ua>
 
-RUN opkg-install bash && mkdir -p /data/logs
+RUN mkdir -p /data/logs
 COPY docker-entrypoint.sh /
 COPY sql /data/sql
 COPY www /data/www
