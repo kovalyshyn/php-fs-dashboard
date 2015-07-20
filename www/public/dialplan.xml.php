@@ -5,7 +5,7 @@ $vars = '';
 $GLOBALS['caller_id_num'] = isset($_POST['Caller-Caller-ID-Number']) ? $_POST['Caller-Caller-ID-Number'] : '';
 $GLOBALS['destination'] = isset($_POST['Caller-Destination-Number']) ? $_POST['Caller-Destination-Number'] : '';
 $GLOBALS['uuid'] = isset($_POST['Unique-ID']) ? substr($_POST['Unique-ID'], 0, 8) : 'uuid';
-$GLOBALS['pgsql'] = "host=PGSQL_HOST dbname=switch user=PGSQL_USER password=PGSQL_PASS connect_timeout=5";
+$GLOBALS['pgsql'] = "host=PGSQL_HOST dbname=switch user=PGSQL_USER password=PGSQL_PASS connect_timeout=3";
 
 ////////////////////////////////////////////////////
 //
@@ -19,7 +19,7 @@ function ContextPublic($xmlw)
        if (!$link) { 
             Extention503($xmlw);
             $xmlw -> endElement();
-            die("");
+            die("<!-- dead -->");
         }
 		//or die('Could not connect: ' . pg_last_error());
 	// Выполнение SQL запроса
