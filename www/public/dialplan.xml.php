@@ -5,7 +5,7 @@ $vars = '';
 $GLOBALS['caller_id_num'] = isset($_POST['Caller-Caller-ID-Number']) ? $_POST['Caller-Caller-ID-Number'] : '';
 $GLOBALS['destination'] = isset($_POST['Caller-Destination-Number']) ? $_POST['Caller-Destination-Number'] : '';
 $GLOBALS['uuid'] = isset($_POST['Unique-ID']) ? substr($_POST['Unique-ID'], 0, 8) : 'uuid';
-$GLOBALS['pgsql'] = "host=PGSQL_HOST dbname=switch user=PGSQL_USER password=PGSQL_PASS connect_timeout=10";
+$GLOBALS['pgsql'] = "host=PGSQL_HOST dbname=switch user=PGSQL_USER password=PGSQL_PASS connect_timeout=5";
 
 ////////////////////////////////////////////////////
 //
@@ -15,8 +15,13 @@ function ContextPublic($xmlw)
 	$xmlw -> startElement('context');
 	$xmlw -> writeAttribute('name', 'public');
 
-	$link = pg_connect($GLOBALS["pgsql"]) 
-		or die('Could not connect: ' . pg_last_error());
+        $link = pg_connect($GLOBALS["pgsql"]);
+       if (!$link) { 
+            Extention503($xmlw);
+            $xmlw -> endElement();
+            die("");
+        }
+		//or die('Could not connect: ' . pg_last_error());
 	// Выполнение SQL запроса
 	$query = 'SELECT
 		"global_prefix",
@@ -361,6 +366,27 @@ function ContextSwitch($xmlw)
 	// </context>
 	$xmlw -> endElement();
 }
+// extention cps
+// <action application="limit" data="hash ${sip_received_ip} ${destination_number} ${calls_per_second}/1 handle_over_limit XML over_limit_actions" />
+function ExtentionCPS($xmlw)
+{
+        //start an extension
+        $xmlw -> startElement('extension');
+        $xmlw -> writeAttribute('name', 'CPS');
+        $xmlw -> writeAttribute('continue', 'true');
+        //write the condition to match on
+        $xmlw -> startElement('condition');
+        //<action>
+        $xmlw -> startElement('action');
+        $xmlw -> writeAttribute('application', 'limit');
+        $xmlw -> writeAttribute('data', 'hash ${sip_received_ip} ${destination_number} ${calls_per_second}/1 over_cps XML CPS');
+        $xmlw -> endElement();
+        //</action>
+        //</condition>
+        $xmlw -> endElement();
+        // </extension>
+}
+// END
 // extention 503
 function Extention503($xmlw)
 {
