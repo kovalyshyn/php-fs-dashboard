@@ -7,6 +7,10 @@
 
 @if(Auth::user()->type == '0')
 
+<p>
+<a class="btn btn-danger" href="/adm/cdr/del"><i class="icon-trash icon-white"></i> Delete old records</a>
+</p>
+
 	{{ 
     GridRender::setGridId("CdrGrid")
             ->enablefilterToolbar()

@@ -83,6 +83,7 @@ Route::controller('news', 'NewsController');
 Route::controller('adm/fas', 'FasController');
 // CDR
 Route::controller('adm/cdr', 'CdrController');
+Route::controller('adm/cdr/del', 'CdrController');
 // Dialer Manager
 Route::controller('adm/dialer', 'DialerController');
 // BlackLists Manager
