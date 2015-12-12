@@ -20,7 +20,7 @@ php:
   volumes_from:
     - dashboard
   links:
-    - ./db:PGSQL_HOST
+    - db:PGSQL_HOST
   privileged: true
 
 web:  
