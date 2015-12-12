@@ -38,4 +38,10 @@ class CdrController extends BaseController {
         $this->GridEncoder->encodeRequestedData(new CDRRepository(), Input::all());
     }
 
+    public function getDel()
+    {
+        DB::table('cdr')->where("start_stamp", "<", "(now() - INTERVAL '1 day')")->delete();
+        return Redirect::to('adm/cdr');
+    }
+
 }
