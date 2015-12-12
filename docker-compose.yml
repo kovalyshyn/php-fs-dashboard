@@ -2,6 +2,8 @@
 dashboard:  
   image: vkovalyshyn/php-fs-dashboard
   privileged: true
+  volumes:
+   - ./mp3:/data/www/public/mp3
 
 db:
   image: postgres:9.4
@@ -9,7 +11,7 @@ db:
    - POSTGRES_USER=switch
    - POSTGRES_PASSWORD=switch
   volumes:
-   - db:/var/lib/postgresql/data
+   - ./db:/var/lib/postgresql/data
   volumes_from:
    - dashboard
 
@@ -36,8 +38,8 @@ switch:
   privileged: true
   net: "host"
   volumes:
-    - fs/logs:/logs
-    - fs/conf:/etc/freeswitch
-    - fs/scripts:/scripts
+    - ./fs/logs:/logs
+    - ./fs/conf:/etc/freeswitch
+    - ./fs/scripts:/scripts
   volumes_from:
     -  dashboard
