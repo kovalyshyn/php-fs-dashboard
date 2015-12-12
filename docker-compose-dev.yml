@@ -6,9 +6,10 @@ dashboard:
    - PGSQL_PASS=switch
   privileged: true
   volumes:
-    - www/app/controllers:/data/www/app/controllers:rw
-    - www/app/models:/data/www/app/models:rw
-    - www/app/views:/data/www/app/views:rw
+    - ./www/app/controllers:/data/www/app/controllers:rw
+    - ./www/app/models:/data/www/app/models:rw
+    - ./www/app/views:/data/www/app/views:rw
+    - ./mp3:/data/www/public/mp3:rw
 
 db:
   image: postgres:9.4
@@ -16,7 +17,7 @@ db:
    - POSTGRES_USER=switch
    - POSTGRES_PASSWORD=switch
   volumes:
-   - sql_restore.sh:/sql_restore.sh
+   - ./sql_restore.sh:/sql_restore.sh
   volumes_from:
    - dashboard
   ports:
