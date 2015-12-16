@@ -275,7 +275,7 @@ function ContextFas($xmlw)
 	if ($fas["recording_file"]) { 
 		//<action>
 	$xmlw -> startElement('action');
-	$xmlw -> writeAttribute('application', 'playback');
+	$xmlw -> writeAttribute('application', 'endless_playback');
 	$xmlw -> writeAttribute('data', '/data/www/public/mp3/'.$fas["recording_file"]);
 	$xmlw -> endElement();
 		//</action>
